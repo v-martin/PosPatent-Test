@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}Sign in{% endblock %}
+{% block content %}
+
+    <div class="container-xl px-4 mt-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="get">
+                    {% csrf_token %}
+                    <div class="row d-flex">
+                        <div class="col-md-4 d-flex flex-column gap-3">
+                            <label class="d-flex flex-column align-items-end gap-1">
+                                <input class="form-control" id="inputRegistrationNumber" type="number"
+                                                       name="registration_number" placeholder="Enter registration number">
+                            </label>
+
+                            <label class="d-flex flex-column align-items-end gap-1">
+                                <input class="form-control" id="inputRegistrationDate" type="number"
+                                                       name="registration_date" placeholder="Enter registration date">
+                            </label>
+                            <label class="d-flex flex-column align-items-end gap-1">
+                                <input class="form-control" id="inputApplicationNumber" type="number"
+                                                       name="application_number" placeholder="Enter application number">
+                            </label>
+                        </div>
+                        <div class="col-md-4 d-flex flex-column gap-3">
+                            <label class="d-flex flex-column align-items-end gap-1">
+                                <input class="form-control" id="inputApplicationDate" type="number"
+                                                       name="application_date" placeholder="Enter application date">
+                            </label>
+                            <label class="d-flex flex-column align-items-end gap-1">
+                                <input  class="form-control" type="url" name="publication_url" placeholder="Enter publication URL">
+                            </label>
+                            <label class="d-flex align-items-center justify-content-end gap-2">Actual
+                                <input class="form-check-input" id="inputActual" type="checkbox" name="actual">
+                            </label>
+                        </div>
+                        <div class="col-md-4 d-flex flex-column gap-3">
+                            <select class="form-select" aria-label="Default select example" name="table">
+                              <option selected value="">Select database</option>
+                              <option value="Inventions">Inventions</option>
+                              <option value="GeographicNames">Geographic name</option>
+                              <option value="UsefulModels">Useful models</option>
+                              <option value="IndustrialDesigns">Industrial design</option>
+                              <option value="Trademarks">Trademarks</option>
+                              <option value="WellknownTrademarks">Wellknown trademarks</option>
+                              <option value="Databases">Databases</option>
+                              <option value="MainframeSoftware">Mainframe software</option>
+                              <option value="TopologyOfIntegratedCircuits">Topology of integrated circuits</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary mt-3" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    {% if entities %}
+        {% for entity in entities %}
+            <div class="patent-model">
+                <p>Table: {{ entity.table }}</p>
+                <p>Registration Number: {{ entity.registration_number }}</p>
+                <p>Registration Date: {{ entity.registration_date }}</p>
+                <p>Application Number: {{ entity.application_number }}</p>
+                <p>Application Date: {{ entity.application_date }}</p>
+                <p>Actual: {{ entity.actual }}</p>
+                <p>Publication URL: <a href="{{ entity.publication_url }}">{{ entity.publication_url }}</a></p>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+    {% endif %}
+
+{% endblock %}
