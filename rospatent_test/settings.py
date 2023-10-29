@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'rospatent_test.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': '5B2EGFdf52gcBbDfgCE5Ed2eBae25CbC',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '18173',
     }
 }
 
