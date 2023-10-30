@@ -29,8 +29,3 @@ def _get_attr(attr: str):
             return int(attr)
         except ValueError:
             return attr
-
-
-def _get_table(num: int) -> type[Model] | None:
-    tables = {0: Patent}
-    return tables.get(num)
