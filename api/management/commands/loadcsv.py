@@ -29,7 +29,7 @@ class Command(BaseCommand):
             tables = ['Inventions', 'GeographicNames', 'UsefulModels', 'IndustrialDesigns', 'Trademarks',
                       'WellknownTrademarks', 'Databases', 'MainframeSoftware', 'TopologyOfIntegratedCircuits']
             indexes = [index for index, value in enumerate(columns) if value in fields]
-            while count < 500:
+            while count < 300:
                 row = next(reader)
                 count += 1
                 patent, is_created = Entity.objects.get_or_create(
